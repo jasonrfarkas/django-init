@@ -1,0 +1,45 @@
+
+build:
+  image: python:{{ '3.3' if cookiecutter.python3.lower() == 'y' else '2.7'}}
+  environment:
+    -DATABASE_URL=postgres://postgres@localhost/{{ cookiecutter.main_module }}
+  # commands:
+  #   - go get
+  #   - go build
+  #   - go test
+script:
+  - pip install pip-accel
+  - pip-accel install ansible
+  - pip-accel install -r requirements/development.txt
+  - psql -c "CREATE DATABASE {{ cookiecutter.main_module }};" -U postgres
+    {% if cookiecutter.postgis == 'y' -%}
+    - psql -c "CREATE EXTENSION postgis;" -U postgres -d {{ cookiecutter.main_module }}
+    {% endif %}
+  - flake8
+  - py.test --cov -v --tb=native
+  - ansible-playbook -i provisioner/hosts provisioner/site.yml --syntax-check
+
+# compose:
+#   database:
+#     image: postgres
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=mysecretpassword
+
+
+# deploy:
+#   heroku:
+#     app: {{ cookiecutter.main_module }}-dev
+#     # token: $$HEROKU_TOKEN # this referances .drone.sec for the encrypted token
+#     when: 
+#       branch: master
+#  heroku:
+#     app: {{ cookiecutter.main_module }}-qa
+#     # token: $$HEROKU_TOKEN # this referances .drone.sec for the encrypted token
+#     when: 
+#       branch: qa
+#  heroku:
+#     app: {{ cookiecutter.main_module }}-prod
+#     # token: $$HEROKU_TOKEN # this referances .drone.sec for the encrypted token
+#     when: 
+#       branch: prod
