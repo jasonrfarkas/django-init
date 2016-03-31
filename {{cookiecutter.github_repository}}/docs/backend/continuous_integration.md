@@ -19,16 +19,17 @@ To learn more about drone and setting up your personal server to run CI testing 
 2. ###### Sign up for desired plan
 
 3-[Login](https://drone.io/login)
-![Login Screenshot](../img/continuous_integration/droneio/screenshots/login_shot.PNG?raw=true "")
 You can login with your hosting service account
 
+![Login Screenshot](../img/continuous_integration/droneio/screenshots/login_shot.PNG)
+
 4. ###### [Start a new project](https://drone.io/new) and select where to look for your repo
-![Select Hosting Service for Project](../img/continuous_integration/droneio/screenshots/Hosting_Service_Project.PNG?raw=true "")
+![Select Hosting Service for Project](../img/continuous_integration/droneio/screenshots/Hosting_Service_Project.PNG)
 
 5. ###### Select ` {{cookiecutter.github_repository}} ` for your repo
 
 6. ###### Setup the project by selecting python 
-![Setup Project Screenshot](../img/continuous_integration/droneio/screenshots/Setup_Project.PNG?raw=true "")
+![Setup Project Screenshot](../img/continuous_integration/droneio/screenshots/Setup_Project.PNG)
 
 7. ###### Setup your Build Script by replacing the text field with the following: 
  
@@ -48,12 +49,12 @@ ansible-playbook -i provisioner/hosts provisioner/site.yml --syntax-check
 ```
 
 8. ###### Click "Save"
-![Setup Screenshot](../img/continuous_integration/droneio/screenshots/Setup_Screenshot.PNG?raw=true "")
+![Setup Screenshot](../img/continuous_integration/droneio/screenshots/Setup_Screenshot.PNG)
 
 9. ###### Insure Python version is correct, or change as needed.
 
 10. ###### Select PostgreSQL 
-![Prebuild Screenshot](../img/continuous_integration/droneio/screenshots/Prebuild_Screenshot.PNG?raw=true "")
+![Prebuild Screenshot](../img/continuous_integration/droneio/screenshots/Prebuild_Screenshot.PNG)
 
 11. ###### Click "Build Now"
 Your project will now be built and script will be run when drone.io recognizes acitiviy on this repo
@@ -64,10 +65,10 @@ Your project will now be built and script will be run when drone.io recognizes a
 12. ######  Click ( "Deployment" )[https://drone.io/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.github_repository }}/admin/deployments#/]
 
 13. ###### Click "New"
-![Deploy Screenshot](../img/continuous_integration/droneio/screenshots/Deploy_Screenshot.PNG?raw=true "")
+![Deploy Screenshot](../img/continuous_integration/droneio/screenshots/Deploy_Screenshot.PNG)
 
 14. ###### Click "Heroku"
-![Heroku Screenshot](../img/continuous_integration/droneio/screenshots/Heroku_Screenshot.PNG?raw=true "")
+![Heroku Screenshot](../img/continuous_integration/droneio/screenshots/Heroku_Screenshot.PNG)
 
 15. ###### Add `https://git.heroku.com:{{ cookiecutter.main_module }}-dev.git` under the Application Git URL
 
@@ -77,7 +78,7 @@ Your project will now be built and script will be run when drone.io recognizes a
 You can do this by showing the deployment key, copying it, going to (Heroku)[https://dashboard.heroku.com/account] and adding it as a registered SSH key
 
 18. ###### Click Save
-![Heroku Save Screenshot](../img/continuous_integration/droneio/screenshots/Heroku_Save_Screenshot.PNG?raw=true "")
+![Heroku Save Screenshot](../img/continuous_integration/droneio/screenshots/Heroku_Save_Screenshot.PNG)
 
 19. ###### To have deployment for other branches including testing and production repeat steps 14 --> 18 with:
 - {{ cookiecutter.main_module }}-qa for branch qa
